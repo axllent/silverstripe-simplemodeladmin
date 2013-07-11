@@ -60,7 +60,9 @@ abstract class SimpleModelAdmin extends LeftAndMain {
 	}
 
 	public function getEditForm($id = null, $fields = null) {
-		$list = $this->getList();
+		$classname = $this->modelClass;
+		$list = $classname::get();
+
 		$listField = GridField::create(
 			$this->sanitiseClassName($this->modelClass),
 			false,
@@ -76,7 +78,6 @@ abstract class SimpleModelAdmin extends LeftAndMain {
 				$sorting[$col] = 'FieldNameNoSorting';
 			$fieldConfig->getComponentByType('GridFieldSortableHeader')->setFieldSorting($sorting);
 		}
-
 
 		// Validation
 		if(singleton($this->modelClass)->hasMethod('getCMSValidator')) {
@@ -100,33 +101,6 @@ abstract class SimpleModelAdmin extends LeftAndMain {
 
 		return $form;
 	}
-
-	/**
-	 * @return SearchContext
-	 */
-	public function getSearchContext() {
-		$context = singleton($this->modelClass)->getDefaultSearchContext();
-
-		// Namespace fields, for easier detection if a search is present
-		foreach($context->getFields() as $field) $field->setName(sprintf('q[%s]', $field->getName()));
-		foreach($context->getFilters() as $filter) $filter->setFullName(sprintf('q[%s]', $filter->getFullName()));
-
-		$this->extend('updateSearchContext', $context);
-
-		return $context;
-	}
-
-
-	public function getList() {
-		$context = $this->getSearchContext();
-		$params = $this->request->requestVar('q');
-		$list = $context->getResults('');
-
-		$this->extend('updateList', $list);
-
-		return $list;
-	}
-
 
 	/**
 	 * Returns managed models' create, search, and import forms
