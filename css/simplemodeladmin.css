@@ -1,4 +1,4 @@
 /* Set same passing as sortable fieldnames */
-.col-FieldNameNoSorting span.non-sortable {
+.sortable-header span.non-sortable {
 	padding: .4em 1em;
 }
