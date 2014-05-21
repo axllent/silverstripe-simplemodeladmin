@@ -1,5 +1,5 @@
 {
-	"name": "axllent/silverstripe-simplemodemadmin",
+	"name": "axllent/silverstripe-simplemodeladmin",
 	"description": "Simplified ModelAdmin for SilverStripe 3",
 	"type": "silverstripe-module",
 	"homepage": "https://github.com/axllent/silverstripe-simplemodeladmin",
