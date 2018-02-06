@@ -4,7 +4,7 @@
 	"type": "silverstripe-module",
 	"homepage": "https://github.com/axllent/silverstripe-simplemodeladmin",
 	"keywords": ["silverstripe", "modeladmin", "cms"],
-	"license": "The MIT License (MIT)",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Ralph Slooten",
